@@ -13,3 +13,20 @@ angular.module('myAppRename.directives', []).
       '</ul>'
     };
   });
+
+/*
+angular.module('myAppRename.directives', []).
+    directive('hoover', function () {
+      return {
+      //  restrict: 'AE',
+        replace: 'true',
+        template:  '<ul style="list-style-type: none">' +
+        '<li ng-repeat="title in titles" ng-mouseover="findWiki({{title}})" ng-mouseleave="">'+
+      '<span ng-show="{{title}}">'+
+     ' <a>Edit</a>'+
+      '</span>'+
+      '</li>'+
+        '</ul>'
+      };
+    });
+*/
