@@ -1,0 +1,22 @@
+<p>This is the partial for view 3.</p>
+<p>Data is fetched from a REST service, connected to MongoDB </p>
+
+<p style="color: red">{{error}}</p>
+<h3>View 4 find wiki</h3>
+
+<div class="form-group" class="form-horizontal">
+    <label for="title" class="control-label col-xs-2"><span class="label label-info">Search</span></label>
+    <input ng-model="searchTitle"  class="form-control" id="title" placeholder="title">
+</div>
+
+<div class="col-md-7" style="padding-left: 2em; height: 500px;">
+    <div style="border: 1px solid lavender;padding: 0.5em;min-height: 400px;margin-bottom: 0.5em;">
+        <p>Wiki pages which contain this word:</p>
+        <ul>
+         <li>
+             <a href="{{wikis.url}}">{{wikis.title}}</a>
+             <p>{{wikis.title}} Url: {{wikis.url}}</p>
+         </li>
+        </ul>
+    </div>
+</div>
