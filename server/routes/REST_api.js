@@ -25,6 +25,7 @@ router.get('/wiki/getWiki/:title', function(req, res) {
   });
 });
 
+
 router.get('/wiki/findWiki/:wiki', function(req, res) {
   if(typeof global.mongo_error !== "undefined"){
     res.status(500);
@@ -79,6 +80,24 @@ router.get('/wiki/:category', function(req, res) {
   });
 });
 
+router.get('/cat/getWikibyCat/:cat', function(req, res) {
+  if(typeof global.mongo_error !== "undefined"){
+    res.status(500);
+    res.end("Error: "+global.mongo_error+" To see a list of users here, make sure you have started the database and set up some test users (see model-->db.js for instructions)");
+    return;
+  }
+  var title = req.params.cat;
+  wiki.getWikibyCat(title , function (err, wikis) {
+    if (err) {
+      res.status(err.status || 400);
+      res.end(JSON.stringify({error: err.toString()}));
+      return;
+    }
+    res.header("Content-type","application/json");
+    res.end(JSON.stringify(wikis));
+    return;
+  });
+});
 
 router.get('/wikiTitle/titles', function(req, res) {
   if(typeof global.mongo_error !== "undefined"){
@@ -87,7 +106,7 @@ router.get('/wikiTitle/titles', function(req, res) {
     return;
   }
   wiki.getTitles(function (err, wikis) {
-  console.log(wikis.length);
+    console.log(wikis.length);
     if (err) {
       res.status(err.status || 400);
       res.end(JSON.stringify({error: err.toString()}));

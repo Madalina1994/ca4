@@ -1,27 +1,27 @@
 
 
 <style>
-  .table-hover > tbody > tr:hover > td,
-  .table-hover > tbody > tr:hover > th {
-    background-color: #d9edf7;
-  }
+    .table-hover > tbody > tr:hover > td,
+    .table-hover > tbody > tr:hover > th {
+        background-color: #d9edf7;
+    }
 </style>
 
 <input type="search"   class="form-control" id="title" placeholder="title" ng-model="searchTitle">
 <button type="submit" value="search" ng-click="findWiki()" >Search</button>
 <h2>All titles</h2>
-        <table class="table table-striped table-hover ">
-          <tr class="info">
-<td>
-  <accordion close-others="true" ng-repeat="title in wikifound">
-  <accordion-group  heading="{{title.title}}">
-    <p>{{title.abstract}}</p>
-      <a href="#/details/{{title.title}}">See details</a>
-    <br/>
-</accordion-group>
+<table class="table table-striped table-hover ">
+    <tr class="info">
+        <td>
+            <accordion close-others="true" ng-repeat="title in wikifound">
+                <accordion-group  heading="{{title.title}}">
+                    <p>{{title.abstract}}</p>
+                    <a href="#/details/{{title.title}}">See details</a>
+                    <br/>
+                </accordion-group>
 
-</accordion>
+            </accordion>
 
-</td>
-          </tr>
-        </table>
+        </td>
+    </tr>
+</table>

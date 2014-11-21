@@ -7,42 +7,16 @@ var wikiFacade = mongoose.model('wiki');
 
 
 function getWiki(title, callback){
-model.WikiModel.find({title : title})
-    .exec(function (err, details){
-        if(err){
-            return callback(err);
-        }
-        callback(null, details);
-    })
+    model.WikiModel.find({title : title})
+        .exec(function (err, details){
+            if(err){
+                return callback(err);
+            }
+            callback(null, details);
+        })
 }
 function findWiki(searchString, callback){
-model.WikiModel.find({title : {$regex: new RegExp(searchString, "i")}})
-    .exec(function (err, details){
-        if(err){
-            return callback(err);
-        }
-        var thisArray = new Array();
-        details.forEach(function (detail){
-            var thisOne = {title: detail.title, abstract: detail.abstract}
-            thisArray.push(thisOne);
-        });
-        callback(null, thisArray);
-    })
-}
-function getCategories(callback){
-model.WikiModel.find({})
-    .distinct('categories')
-    .exec(function (err, details){
-        if(err){
-            return callback(err);
-        }
-        callback(null, details);
-    })
-}
-function getWikisWithCategory(category, callback){
-    console.log('category : '+ category);
-    model.WikiModel.find({categories : category})
-       //.select('title abstract')
+    model.WikiModel.find({title : {$regex: new RegExp(searchString, "i")}})
         .exec(function (err, details){
             if(err){
                 return callback(err);
@@ -55,6 +29,46 @@ function getWikisWithCategory(category, callback){
             callback(null, thisArray);
         })
 }
+function getCategories(callback){
+    model.WikiModel.find({})
+        .distinct('categories')
+        .exec(function (err, details){
+            if(err){
+                return callback(err);
+            }
+            callback(null, details);
+        })
+}
+function getWikisWithCategory(category, callback){
+    console.log('category : '+ category);
+    model.WikiModel.find({categories : category})
+        //.select('title abstract')
+        .exec(function (err, details){
+            if(err){
+                return callback(err);
+            }
+            var thisArray = new Array();
+            details.forEach(function (detail){
+                var thisOne = {title: detail.title, abstract: detail.abstract}
+                thisArray.push(thisOne);
+            });
+            callback(null, thisArray);
+        })
+}
+
+function getWikibyCat(category, callback){
+    console.log('category : '+ category);
+    model.WikiModel.find({categories : category})
+        //.select('title abstract')
+        .exec(function (err, details){
+            if(err){
+                return callback(err);
+            }
+
+            callback(null, details);
+        })
+}
+
 
 function getTitles(callback){
     model.WikiModel.find({})
@@ -72,6 +86,7 @@ module.exports = {
     findWiki: findWiki,
     getCategories : getCategories,
     getWikisWithCategory : getWikisWithCategory,
-    getTitles: getTitles
+    getTitles: getTitles,
+    getWikibyCat: getWikibyCat
 
 }

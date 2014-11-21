@@ -66,86 +66,113 @@ describe('Facade for system', function () {
         //mongoose.connection.db.dropDatabase();
         testServer.close();
     })
-it('should test for title', function(done) {
-    wiki.getWiki("Bla Blah")
-        .exec(function (details) {
-            //res.setEncoding("utf8");
-            //res.on("data", function(chunk){
-            var result = JSON.parse(details);
-            result.length.should.equal(1);
-            result[0].abstract.should.equal("xxx");
-            done();
-        });
-});
+    it('should test for title', function (done) {
 
+        wiki.getWiki("hallo", function (res) {
 
-    it('should test for fetching title and abstract by title', function(done){
-    wiki.findWiki("hallo", function(res){
-        res.setEncoding("utf8");
-        res.on("data", function(chunk){
-            var result=JSON.parse(chunk);
-            result.length.should.equal(1);
-            result[0].title.should.equal("hallo");
-            result[0].abstract.should.equal("hxfgx");
-            done();
-        })
-    });
-
-});
-
-    it('should test for fetching categories', function(done){
-        wiki.getCategories( function(res){
             res.setEncoding("utf8");
-            res.on("data", function(chunk){
-                var result=JSON.parse(chunk);
-                result.length.should.equal(3);
-                result[0].should.equal("newShit");
-                result[1].should.equal("newShit2");
-                done();
-            })
-        });
-
-    });
-
-    it('should test for fetching title and abstract by categories', function(done){
-        wiki.getWikisWithCategory("copy", function(res){
-            res.setEncoding("utf8");
-            res.on("data", function(chunk){
-                var result=JSON.parse(chunk);
+            res.on("data", function (chunk) {
+                var result = JSON.parse(chunk);
                 result.length.should.equal(1);
-                result[0].abstract.should.equal("vala");
+                result[0].title.should.equal("hallo");
+                result[0].abstract.should.equal("hxfgx");
                 done();
             })
         });
 
-    });
+        //wiki.getWiki(title , function (err, wikis) {
+        //    if (err) {
+        //        res.status(err.status || 400);
+        //        res.end(JSON.stringify({error: err.toString()}));
+        //        return;
+        //    }
+        //    res.header("Content-type","application/json");
+        //    res.end(JSON.stringify(wikis));
+        //    return;
+        //});
+        //
+        //it("Should get abstract and title for category", function(done){
+        //    http.get("http://localhost:"+testPort+"/api/wiki/copy",function(res){
+        //        res.setEncoding('utf8');
+        //        res.on("data", function(chunk){
+        //            var n=JSON.parse(chunk);
+        //            n.length.should.equal(2);
+        //            n[0].title.should.equal("hallfdgo");
+        //            n[1].abstract.should.equal("hxfgx");
+        //            done();
+        //        })
+        //    })
 
-    it('should test for fetching title and abstract by categories', function(done){
-        wiki.getWikisWithCategory("copy", function(res){
-            res.setEncoding("utf8");
-            res.on("data", function(chunk){
-                var result=JSON.parse(chunk);
-                result.length.should.equal(1);
-                result[0].abstract.should.equal("vala");
-                done();
-            })
+     //   })
+
+
+        it('should test for fetching title and abstract by title', function (done) {
+            wiki.findWiki("hallo", function (res) {
+                res.setEncoding("utf8");
+                res.on("data", function (chunk) {
+                    var result = JSON.parse(chunk);
+                    result.length.should.equal(1);
+                    result[0].title.should.equal("hallo");
+                    result[0].abstract.should.equal("hxfgx");
+                    done();
+                })
+            });
+
         });
 
-    });
+        it('should test for fetching categories', function (done) {
+            wiki.getCategories(function (res) {
+                res.setEncoding("utf8");
+                res.on("data", function (chunk) {
+                    var result = JSON.parse(chunk);
+                    result.length.should.equal(3);
+                    result[0].should.equal("newShit");
+                    result[1].should.equal("newShit2");
+                    done();
+                })
+            });
 
-    it('should test for fetching titles', function(done){
-        wiki.getTitles( function(res){
-            res.setEncoding("utf8");
-            res.on("data", function(chunk){
-                var result=JSON.parse(chunk);
-                result.length.should.equal(3);
-                result[0].should.equal("Bla Blah");
-                done();
-            })
         });
 
+        it('should test for fetching title and abstract by categories', function (done) {
+            wiki.getWikisWithCategory("copy", function (res) {
+                res.setEncoding("utf8");
+                res.on("data", function (chunk) {
+                    var result = JSON.parse(chunk);
+                    result.length.should.equal(1);
+                    result[0].abstract.should.equal("vala");
+                    done();
+                })
+            });
+
+        });
+
+        it('should test for fetching title and abstract by categories', function (done) {
+            wiki.getWikisWithCategory("copy", function (res) {
+                res.setEncoding("utf8");
+                res.on("data", function (chunk) {
+                    var result = JSON.parse(chunk);
+                    result.length.should.equal(1);
+                    result[0].abstract.should.equal("vala");
+                    done();
+                })
+            });
+
+        });
+
+        it('should test for fetching titles', function (done) {
+            wiki.getTitles(function (res) {
+                res.setEncoding("utf8");
+                res.on("data", function (chunk) {
+                    var result = JSON.parse(chunk);
+                    result.length.should.equal(3);
+                    result[0].should.equal("Bla Blah");
+                    done();
+                })
+            });
+
+        });
+
+
     });
-
-
-
-});
+})

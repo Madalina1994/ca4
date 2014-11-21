@@ -72,18 +72,25 @@ angular.module('myAppRename.viewGetCategories', ['ngRoute'])
             controller: 'ViewGetCategoriesCtrl'
         });
     }])
-    .controller('ViewGetCategoriesCtrl', ['$scope', 'WikiFactory', function ($scope, WikiFactory) {
+    .controller('ViewGetCategoriesCtrl', ['$scope','$http', 'WikiFactory', function ($scope, $http,  WikiFactory) {
         var categories = [];
         $scope.predicate = "-name";
-        $scope.findTitle= function(title){
-            WikiFactory.findTitle(title)
+
+        $scope.getWikisWithCategory= function(category){
+            //WikiFactory.getWikisWithCategory(title)
+            $http({
+                method: 'GET',
+                url: 'api/wiki/' + category
+            })
                 .success(function (data, status, headers, config) {
                     $scope.wikifound = data;
+                    console.log("blabla : "+ $scope.wikifound)
                 }).
                 error(function (data, status, headers, config) {
                     $scope.error = data;
                 });
         }
+
         $scope.showCategorywithLetter = function(letter){
             console.log("blaval : " + letter);
             $scope.categories = categories.filter(function(category){
