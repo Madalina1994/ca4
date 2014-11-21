@@ -1,4 +1,4 @@
-<br><br><br>
+
 <div align="center">
     <table class="table table-striped table-hover " width="300">
         <thead>
@@ -11,23 +11,33 @@
 
         </tr>
         <tr ng-repeat="found in wiki" class="success">
-            <td><a href="{{found.url}}">{{"URL: "+found.url}}></a></td>
+            <td>{{"URL: "+found.url}}></td>
         </tr>
         <tr ng-repeat="found in wiki" class="success">
             <td>{{"Abstract: "+found.abstract}}</td>
         </tr>
         <tr ng-repeat="found in wiki" class="success">
-            <td>Categories: <ul ng-repeat="cat in found.categories" >
+            <td>Categories:
+                <ul ng-repeat="cat in found.categories">
 
-                <li><a href="#/categories/{{cat}}">{{cat}}</a></li>
+                    <li><a href="#/categories/{{cat}}">{{cat}}</a></li>
 
-            </ul></td>
+                </ul>
+            </td>
         </tr>
         <tr ng-repeat="found in wiki" class="success">
-            <td>Headings: <ul ng-repeat="disco in found.headings"><li>{{"Heading: "+disco.heading +", Position: " + disco.position}}</li></ul></td>
+            <td>Headings:
+                <ul ng-repeat="disco in found.headings">
+                    <li>{{"Heading: "+disco.heading +", Position: " + disco.position}}</li>
+                </ul>
+            </td>
         </tr>
         <tr ng-repeat="found in wiki" class="success">
-            <td>{{"Links: "+found.links}}</td>
+            <td>Links:
+                <ul ng-repeat="link0 in found.links">
+                    <li><a href="{{link0}}">{{link0}}</a></li>
+                </ul>
+            </td>
         </tr>
         </tbody>
     </table>

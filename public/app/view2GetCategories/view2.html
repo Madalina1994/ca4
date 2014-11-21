@@ -1,4 +1,3 @@
-
 <style>
     .table-hover > tbody > tr:hover > td,
     .table-hover > tbody > tr:hover > th {
@@ -7,18 +6,24 @@
 </style>
 <h2>All categories</h2>
 <p style="color: red">{{error}}</p>
-<button type="button" class="btn-link" ng-repeat="letter in alphabet" ng-click="showCategorywithLetter(letter)" ng-class="{'btn-primary': letter==activeLetter}">{{letter}}</button>
-<button type="submit" value="search" ng-click="getCategories()" ng-class="{'btn-primary': a==activeLetter}">alphabet</button>
+        <p>Please allow some time lapses!</p>
+<button type="button" class="btn-link" ng-repeat="letter in alphabet" ng-click="showCategorywithLetter(letter)"
+        ng-class="{'btn-primary': letter==activeLetter}">{{letter}}
+</button>
+<button type="submit" value="search" ng-click="getCategories()" ng-class="{'btn-primary': a==activeLetter}">alphabet
+</button>
 <div class="row">
     <div class="col-md-5" style="height: 500px;overflow-y: auto;">
         <table class="table table-scripted table-hover">
             <tr class="info">
                 <td>
                     <accordion close-others="true">
-                        <accordion-group heading={{category}} ng-repeat="category in categories" ng-click="getWikisWithCategory(category)">
-                            <p><table class="table">
+                        <accordion-group heading={{category}} ng-repeat="category in categories"
+                                         ng-click="getWikisWithCategory(category)">
+                            <p>
+                            <table class="table">
                                 <tbody>
-                                <tr  ng-repeat="title in wikifound">
+                                <tr ng-repeat="title in wikifound">
                                     <td>{{title.title}}</td>
                                 </tr>
                                 </tbody>
@@ -30,10 +35,5 @@
             </tr>
         </table>
     </div>
-    <div class="col-md-7" style="padding-right: 2em; height: 500px;">
-        <div style="border: 1px solid lavender;padding:  0.5em;min-height: 400px;margin-bottom: 0.5em;">
-            <p>Category: </p>
-            <p>Titles: </p>
-        </div>
     </div>
 </div>

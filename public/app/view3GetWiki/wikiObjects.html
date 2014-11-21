@@ -1,13 +1,50 @@
-<div align="center">
-<table  class="table table-striped table-hover " >
-    <thead  class="info">
-    <th>Title</th>
-    <th>Abstract</th>
-    </thead>
-    <tbody>
-    <tr ng-repeat="info in gotWikis" class="success">
-    <td>{{info.title}}</td>
+<div align="left">
+    <table class="table table-striped table-hover " align="center">
+        <thead class="info">
+        <th>Title</th>
+        <th>Abstract</th>
+        <th>URL</th>
+        <th>Categories</th>
+        <th>Links</th>
+        <th>Headings</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="info in gotWikis" class="success">
+            <!--<td>Title:</td>-->
+            <td>{{info.title}}</td>
+            <td>{{info.abstract}}</td>
+            <td valign="left">{{info.url}}</td>
+            <td valign="left">
+                <!--<table>-->
+                <!--<tr >-->
+                <!--<td>-->
+                <ul ng-repeat="found in info.categories">
+                    <li>
+                        {{found}}
+                    </li>
+                </ul>
+                <!--</td>-->
+                <!--</tr>-->
+                <!--</table>-->
+            </td>
+            <td valign="left">
+                <ul ng-repeat="found in info.links">
+                    <li>
+                        {{found}}
+                    </li>
+                </ul>
 
-</tr>
-    </tbody></table>
+            </td>
+            <td valign="left">
+                <ul ng-repeat="found in info.headings">
+                    <li>
+                        {{found.heading}}
+                    </li>
+                </ul>
+            </td>
+
+            <!--</tr>-->
+            <!--<tr ng-repeat="info in gotWikis" class="info"><td>Abstract: </td><td>{{info.abstract}}</td></tr>-->
+        </tbody>
+    </table>
 </div>

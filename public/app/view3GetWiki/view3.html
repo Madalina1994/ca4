@@ -1,5 +1,3 @@
-
-
 <style>
     .table-hover > tbody > tr:hover > td,
     .table-hover > tbody > tr:hover > th {
@@ -7,14 +5,14 @@
     }
 </style>
 
-<input type="search"   class="form-control" id="title" placeholder="title" ng-model="searchTitle">
-<button type="submit" value="search" ng-click="findWiki()" >Search</button>
+<input type="search" class="form-control" id="title" placeholder="title" ng-model="searchTitle">
+<button type="submit" value="search" ng-click="findWiki()">Search</button>
 <h2>All titles</h2>
 <table class="table table-striped table-hover ">
     <tr class="info">
         <td>
             <accordion close-others="true" ng-repeat="title in wikifound">
-                <accordion-group  heading="{{title.title}}">
+                <accordion-group heading="{{title.title}}">
                     <p>{{title.abstract}}</p>
                     <a href="#/details/{{title.title}}">See details</a>
                     <br/>

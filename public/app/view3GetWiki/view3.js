@@ -1,29 +1,3 @@
-/*'use strict';
-
- angular.module('myAppRename.view3', ['ngRoute'])
-
- .config(['$routeProvider', function($routeProvider) {
- $routeProvider.when('/view3GetWiki', {
- templateUrl: 'app/view3GetWiki/view3GetWiki.html',
- controller: 'View3Ctrl'
- });
- }])
-
- .controller('View3Ctrl', function ($scope, $http) {
- $http({
- method: 'GET',
- url: 'api/user'
- }).
- success(function (data, status, headers, config) {
- $scope.users = data;
- }).
- error(function (data, status, headers, config) {
- $scope.error = data;
- });
- });
-
- */
-
 'use strict';
 
 angular.module('myAppRename.viewGetWiki', ['ngRoute'])
@@ -42,10 +16,10 @@ angular.module('myAppRename.viewGetWiki', ['ngRoute'])
                 controller: 'ViewGetWikiCtrl'
             });
     }])
-    .controller('ViewGetWikiCtrl', ['$scope', '$http', 'WikiFactory', '$routeParams', function ($scope, $http,  WikiFactory, $routeParams) {
+    .controller('ViewGetWikiCtrl', ['$scope', '$http', 'WikiFactory', '$routeParams', function ($scope, $http, WikiFactory, $routeParams) {
         $scope.predicate = "-name";
 //        $scope.wikiList=Wikifactory.getWiki();
-        $scope.findWiki= function(){
+        $scope.findWiki = function () {
             var title = $scope.searchTitle;
             WikiFactory.findWiki(title)
                 .success(function (data, status, headers, config) {
@@ -57,7 +31,7 @@ angular.module('myAppRename.viewGetWiki', ['ngRoute'])
                 });
         }
 
-        $scope.getWiki = function(title){
+        $scope.getWiki = function (title) {
 
             // WikiFactory.getWiki(title)
             $http({
@@ -67,7 +41,7 @@ angular.module('myAppRename.viewGetWiki', ['ngRoute'])
                 .success(function (data, status, headers, config) {
                     $scope.wiki = data;
                     console.log(data);
-                    console.log('lalal' +data);
+                    console.log('lalal' + data);
                 }).
                 error(function (data, status, headers, config) {
                     $scope.error = data;
@@ -76,23 +50,20 @@ angular.module('myAppRename.viewGetWiki', ['ngRoute'])
 
         $scope.getWiki($routeParams.title);
 
-        $scope.getWiksByCat= function(cats){
+        $scope.getWiksByCat = function (cats) {
 
             $http({
-                method:'GET',
-                url: 'api/cat/getWikibyCat/'+cats
+                method: 'GET',
+                url: 'api/cat/getWikibyCat/' + cats
             })
-                .success(function (data, status, headers, config){
-                    $scope.gotWikis=data;
+                .success(function (data, status, headers, config) {
+                    $scope.gotWikis = data;
                 })
-                .error(function(data, status, headers, config){
-                    $scope.error=data;
+                .error(function (data, status, headers, config) {
+                    $scope.error = data;
                 })
         }
         $scope.getWiksByCat($routeParams.cats);
-
-
-
 
 
     }]);
