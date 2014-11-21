@@ -1,30 +1,30 @@
-describe('myAppRename.view3GetWiki View3Ctrl', function() {
-
-  var scope, httpBackendMock, ctrl;
-  var users = [
-    {userName : "Lars", email :"l@l.dk",pw: "test",created : new Date(2014,11,2)},
-    {userName : "Henrik", email :"h@h.dk",pw: "test",created : new Date(2014,11,2)},
-  ];
-  beforeEach(module('myAppRename.view3'));
-
-  beforeEach(inject(function ($httpBackend, $rootScope, $controller) {
-    httpBackendMock = $httpBackend;
-    httpBackendMock.expectGET('api/user').
-      respond(users);
-    scope = $rootScope.$new();
-    ctrl = $controller('View3Ctrl', {$scope: scope});
-  }));
-
-  it('Should fetch two names ', function () {
-    expect(scope.users).toBeUndefined();
-    httpBackendMock.flush();
-    expect(scope.users.length).toEqual(2);
-  });
-
-  it('Should fetch Lars and Henrik', function () {
-    expect(scope.users).toBeUndefined();
-    httpBackendMock.flush();
-    expect(JSON.stringify(scope.users)).toEqual(JSON.stringify(users));
-  });
-
-});
+//describe('myAppRename.view3GetWiki ViewGetWikiCtrl', function() {
+//
+//  var scope, httpBackendMock, ctrl;
+//  var titles = [
+//    {"title" : "Bla Blah", "url" :"lars@a.dk","abstract": "xxx", "categories":  [ "newShit" ], "links" : ["sdkjfsuhg.com"], "headings": [{"heading" : "sufhuwi", "position": 4353}] },
+//    {"title" : "hallo", "url" :"lars@a.dk","abstract": "hxfgx", "categories": [ "newShit2", "copy"], "links" : ["sdkjfsuhg.com"], "headings": [{"heading" : "sufhuwi", "position": 4653}] };
+//  ];
+//  beforeEach(module('myAppRename.view3GetWiki'));
+//
+//  beforeEach(inject(function ($httpBackend, $rootScope, $controller) {
+//    httpBackendMock = $httpBackend;
+//    httpBackendMock.expectGET('/wiki/findWiki/hallo').
+//      respond(users);
+//    scope = $rootScope.$new();
+//    ctrl = $controller('View3Ctrl', {$scope: scope});
+//  }));
+//
+//  it('Should fetch two names ', function () {
+//    expect(scope.users).toBeUndefined();
+//    httpBackendMock.flush();
+//    expect(scope.users.length).toEqual(2);
+//  });
+//
+//  it('Should fetch Lars and Henrik', function () {
+//    expect(scope.users).toBeUndefined();
+//    httpBackendMock.flush();
+//    expect(JSON.stringify(scope.users)).toEqual(JSON.stringify(users));
+//  });
+//
+//});

@@ -1,31 +1,70 @@
+<!--<style>-->
+  <!--.table-hover > tbody > tr:hover > td,-->
+  <!--.table-hover > tbody > tr:hover > th {-->
+    <!--background-color: #d9edf7;-->
+  <!--}-->
+<!--</style>-->
+
+<!--&lt;!&ndash;<input type="search" ng-model="searchTitle"  class="form-control" id="title" placeholder="title">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<button type="submit" value="search" ng-click="getAllTitles|filter:searchTitle">Search</button>&ndash;&gt;-->
+<!--<p style="color: red">{{error}}</p>-->
+<!--<div class="row">-->
+  <!--<div class="col-md-5" style="height: 500px;overflow-y: auto;">-->
+      <!--<table class="table table-striped table-hover ">-->
+       <!--<thead>-->
+       <!--<th >-->
+         <!--<font color="#8a2be2"><h2>Categories</h2></font>-->
+       <!--</th>-->
+       <!--</thead>-->
+        <!--<tbody>-->
+        <!--<tr ng-repeat="category in categories" class="info">-->
+        <!--<td>{{category}}-->
+        <!--</td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+        <!--</table>-->
+
+    <!--</div>-->
+
+
+<!--</div>-->
+
+
 <style>
-  .table-hover > tbody > tr:hover > td,
-  .table-hover > tbody > tr:hover > th {
-    background-color: #d9edf7;
-  }
+    .table-hover > tbody > tr:hover > td,
+    .table-hover > tbody > tr:hover > th {
+        background-color: #d9edf7;
+    }
 </style>
-
-<!--<input type="search" ng-model="searchTitle"  class="form-control" id="title" placeholder="title">-->
-
-        <!--<button type="submit" value="search" ng-click="getAllTitles|filter:searchTitle">Search</button>-->
+<h2>All categories</h2>
 <p style="color: red">{{error}}</p>
+<button type="button" class="btn-link" ng-repeat="letter in alphabet" ng-click="showCategorywithLetter(letter)" ng-class="{'btn-primary': letter==activeLetter}">{{letter}}</button>
+<button type="submit" value="search" ng-click="getCategories()" ng-class="{'btn-primary': a==activeLetter}">alphabet</button>
 <div class="row">
-  <div class="col-md-5" style="height: 500px;overflow-y: auto;">
-      <table class="table table-striped table-hover ">
-       <thead>
-       <th >
-         <font color="#8a2be2"><h2>Categories</h2></font>
-       </th>
-       </thead>
-        <tbody>
-        <tr ng-repeat="category in categories" class="info">
-        <td>{{category}}
-        </td>
-        </tr>
-        </tbody>
+    <div class="col-md-5" style="height: 500px;overflow-y: auto;">
+        <table class="table table-scripted table-hover">
+            <tr class="info">
+                <td>
+                    <accordion close-others="true">
+                        <accordion-group heading={{category}} ng-repeat="category in categories" ng-click="findTitle(category)">
+                            <table class="table">
+                                <tbody>
+                                <tr  ng-repeat="title in wikifound">
+                                    <td>{{title.title}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </accordion-group>
+                    </accordion>
+                </td>
+            </tr>
         </table>
-
     </div>
-
-
+    <div class="col-md-7" style="padding-right: 2em; height: 500px;">
+        <div style="border: 1px solid lavender;padding:  0.5em;min-height: 400px;margin-bottom: 0.5em;">
+            <p>Category: </p>
+            <p>Titles: </p>
+        </div>
+    </div>
 </div>

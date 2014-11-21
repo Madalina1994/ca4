@@ -21,6 +21,7 @@ router.get('/wiki/getWiki/:title', function(req, res) {
     }
     res.header("Content-type","application/json");
     res.end(JSON.stringify(wikis));
+    return;
   });
 });
 

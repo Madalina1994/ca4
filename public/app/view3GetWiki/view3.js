@@ -32,10 +32,15 @@ angular.module('myAppRename.viewGetWiki', ['ngRoute'])
       $routeProvider.when('/getWiki', {
         templateUrl: 'app/view3GetWiki/view3.html',
         controller: 'ViewGetWikiCtrl'
-      });
+      })
+        .when('/details/:title', {
+            templateUrl: 'app/view3GetWiki/wikiDetails.html',
+            controller: 'ViewGetWikiCtrl'
+        });
     }])
-    .controller('ViewGetWikiCtrl', ['$scope', 'WikiFactory', function ($scope, WikiFactory) {
+    .controller('ViewGetWikiCtrl', ['$scope', 'WikiFactory','$routeParams', function ($scope, WikiFactory, $routeParams) {
         $scope.predicate = "-name";
+//        $scope.wikiList=Wikifactory.getWiki();
          $scope.findWiki= function(){
              var title = $scope.searchTitle;
         WikiFactory.findWiki(title)
@@ -63,6 +68,21 @@ angular.module('myAppRename.viewGetWiki', ['ngRoute'])
         //    error(function (data, status, headers, config) {
         //        $scope.error = data;
         //    });
+        if(angular.isDefined($routeParams.title)){
+            console.log($routeParams.title);
+
+            // $scope.foundPer = $
+            var id = $routeParams.title;
+            var list = $scope.wikiList();
+            for (var i=0;i<list.length;i++)
+            {
+                if (id == list[i].title){
+                    $scope.foundWiki=list[i];
+                    break;
+                }
+            }
+
+        };
 
 
 
